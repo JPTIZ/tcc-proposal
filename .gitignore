@@ -1,1 +1,6 @@
-marleson/
+**/*.aux
+**/*.bbl
+**/*.blg
+**/*.log
+**/*.toc
+**/.marleson
