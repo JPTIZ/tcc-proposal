@@ -34,7 +34,10 @@
 \usepackage{bm}
 \usepackage{amssymb}
 \usepackage[normalem]{ulem}
- \usepackage[lined,boxed,ruled,commentsnumbered,portuguese]{algorithm2e}
+\usepackage[lined,boxed,ruled,commentsnumbered,portuguese]{algorithm2e}
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
 
 \usepackage{tikz}
 \usetikzlibrary{decorations.pathreplacing}
@@ -48,6 +51,8 @@
 
 \definecolor{shadecolor}{rgb}{0.8,0.8,0.8}
 \newcommand\VRule[1][\arrayrulewidth]{\vrule width #1}
+
+\usepackage[a5paper,inner=2.5cm,outer=1.5cm,top=2.0cm,bottom=1.5cm,head=0.7cm,foot=0.7cm]{geometry}
 
 %----------------------------------------------------------------------
 % Identificadores do trabalho
@@ -94,10 +99,6 @@
 %\epigrafe{Texto da Epígrafe. Citação relativa ao tema do trabalho. É opcional. A epígrafe pode também aparecer na abertura de cada seção ou capítulo.}
 %{(Autor da epígrafe, ano)}
 
-% \textoResumo {%
-
-% }
-
 \assuntos{EDA, verificação, pré-silício, memória compartilhada, multicore, coerência de cache}
 
 %\textoResumo {O presente TCC visa desenvolver o projeto de blocos aceleradores em hardware, de alta eficiência energética, para a etapa de \ac{me} na codificação de vídeo de alta resolução e compatível com o padrão de \ac{hevc}. Serão estudadas soluções que representam o estado da arte para \ac{me} com tamanho de bloco variável, com ênfase na métrica de similaridade conhecida por \ac{satd}, a qual sabe-se resultar em melhor qualidade de codificação. Ainda, serão identificadas oportunidades de otimizações de eficiência energética, devendo estar associadas à solução arquitetural e ao uso de técnicas de \textit{low-power}.}
@@ -127,72 +128,68 @@
 % folha de aprovação de proposta de TCC
 
 \begin{snugshade}
-
-\begin{center}
-{\textbf{\small{FOLHA DE APROVAÇÃO DE PROPOSTA DE TCC}}}
-
-\end{center}
-
+    \begin{center}
+        {\textbf{\small{FOLHA DE APROVAÇÃO DE PROPOSTA DE TCC}}}
+    \end{center}
 \end{snugshade}
 
-% \vspace{-8pt}
-% \small
+\vspace{-8pt}
 \noindent\resizebox{\textwidth}{!}{
-	\begin{tabular}{|l|X p{8cm}|}
-		%\begin{small}
-			\hline
-   \textbf{Acadêmico} &  \imprimirautor \\ \hline
-   \textbf{Título do trabalho} & \imprimirtitulo \\ \hline
-   \textbf{Curso} & Ciências da Computação/INE/UFSC \\ \hline
-   \textbf{Área de Concentração} &  \textit{Hardware} \\ \hline
-
-		%\end{small}
-	\end{tabular}
+    \footnotesize
+    \begin{tabular}{|l|X p{8cm}|}
+        \hline
+        \textbf{Acadêmico} &  \imprimirautor \\ \hline
+        \textbf{Título do trabalho} & \imprimirtitulo \\ \hline
+        \textbf{Curso} & Ciências da Computação/INE/UFSC \\ \hline
+        \textbf{Área de Concentração} &  \textit{Hardware} \\ \hline
+    \end{tabular}
 }
 
 \vspace{8pt}
 
-\noindent\textbf{Instruções para preenchimento pelo \uline{\small{ORIENTADOR DO TRABALHO}}:}
-\begin{itemize}[leftmargin=*,noitemsep,topsep=0pt]
-	\item[-] \small Para cada critério avaliado, assinale um X na coluna SIM apenas se considerado aprovado. Caso contrário, indique as alterações necessárias na coluna Observação.
-\end{itemize}
+{%
+    \small
+    \noindent\textbf{Instruções para preenchimento pelo \uline{ORIENTADOR DO TRABALHO}:}
+    \begin{itemize}[leftmargin=*,noitemsep,topsep=0pt]
+        \item[-] Para cada critério avaliado, assinale um X na coluna SIM apenas se considerado aprovado. Caso contrário, indique as alterações necessárias na coluna Observação.
+    \end{itemize}
+}
 
 \vspace{8pt}
 
-\noindent\resizebox{\textwidth}{!}{
-	\begin{tabular}{|X p{6cm}|X p{0.5cm}|X p{0.8cm}|X p{0.5cm}|X p{1cm}|X p{3.2cm}|}
-			\hline
-   \cellcolor{shadecolor} & \multicolumn{4}{c|}{\cellcolor{shadecolor} \textbf{Aprovado}} & \cellcolor{shadecolor} \\ \hhline{*{1}{>{\arrayrulecolor{shadecolor}}-}*{4}{>{\arrayrulecolor{black}}|-}>{\arrayrulecolor{shadecolor}}|->{\arrayrulecolor{black}}}
-   \multirow{-1}{*}{\cellcolor{shadecolor} \textbf{Critérios}} & \cellcolor{shadecolor}\textbf{Sim} &  \cellcolor{shadecolor}\textbf{Parcial} &  \cellcolor{shadecolor}\textbf{Não} &  \cellcolor{shadecolor}\textbf{Não se aplica} & \multirow{-1}{*}{\cellcolor{shadecolor} \textbf{Observação}} \\ \hline
-			{\small 1.O trabalho é adequado para um TCC no CCO/SIN (relevância/abrangência)?} & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \\ \hline
-			{\small 2.O título do trabalho é adequado?} & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \\ \hline
-			{\small 3.O tema de pesquisa está claramente descrito?} & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \\ \hline
-			{\small 4.O problema/hipóteses de pesquisa do trabalho está claramente identificado?} & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \\ \hline
-			{\small 5.A relevância da pesquisa é justificada?} & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \\ \hline
-			{\small 6.Os objetivos descrevem completa e claramente o que se pretende alcançar neste trabalho?} & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \\ \hline
-			{\small 7.É definido o método a ser adotado no trabalho? O método condiz com os objetivos e é adequado para um TCC? } & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \\ \hline
-			{\small 8.Foi definido um cronograma coerente com o método definido (indicando todas as atividades) e com as datas das entregas (p.ex.Projeto I, II, Defesa)?} & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \\ \hline
-			{\small 9.Foram identificados custos relativos à execução deste trabalho (se houver)? Haverá financiamento para estes custos?} & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \\ \hline
-			{\small 10.Foram identificados todos os envolvidos neste trabalho?} & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \\ \hline
-			{\small 11.As formas de comunicação foram definidas (ex: horários para orientação)?} & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \\ \hline
-			{\small 12.Riscos potenciais que podem causar desvios do plano foram identificados?} & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \\ \hline
-			{\small 13.Caso o TCC envolva a produção de um software ou outro tipo de produto e seja desenvolvido também como uma atividade	realizada numa empresa ou laboratório, consta da proposta uma declaração (Anexo 3) de ciência e concordância com a entrega do código fonte e/ou documentação produzidos? } & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \\ \hline
-
-		%\end{small}
-	\end{tabular}
+\noindent\resizebox{\textwidth}{!}{%
+    \footnotesize
+    \begin{tabular}{|X p{6cm}|X p{0.5cm}|X p{0.8cm}|X p{0.5cm}|X p{1cm}|X p{3.2cm}|}
+        \hline
+        \cellcolor{shadecolor} & \multicolumn{4}{c|}{\cellcolor{shadecolor} \textbf{Aprovado}} & \cellcolor{shadecolor} \\ \hhline{*{1}{>{\arrayrulecolor{shadecolor}}-}*{4}{>{\arrayrulecolor{black}}|-}>{\arrayrulecolor{shadecolor}}|->{\arrayrulecolor{black}}}
+        \multirow{-1}{*}{\cellcolor{shadecolor} \textbf{Critérios}} & \cellcolor{shadecolor}\textbf{Sim} &  \cellcolor{shadecolor}\textbf{Parcial} & \cellcolor{shadecolor}\textbf{Não} & \cellcolor{shadecolor}\textbf{Não se aplica} & \multirow{-1}{*}{\cellcolor{shadecolor} \textbf{Observação}} \\ \hline
+        1.O trabalho é adequado para um TCC no CCO/SIN (relevância/abrangência)? & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \\ \hline
+        2.O título do trabalho é adequado? & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \\ \hline
+        3.O tema de pesquisa está claramente descrito? & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor}  & \cellcolor{shadecolor} & \\ \hline
+        4.O problema/hipóteses de pesquisa do trabalho está claramente identificado? & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \\ \hline
+        5.A relevância da pesquisa é justificada? & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor}  & \cellcolor{shadecolor} & \\ \hline
+        6.Os objetivos descrevem completa e claramente o que se pretende alcançar neste trabalho? & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \\ \hline
+        7.É definido o método a ser adotado no trabalho? O método condiz com os objetivos e é adequado para um TCC? & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \\ \hline
+        8.Foi definido um cronograma coerente com o método definido (indicando todas as atividades) e com as datas das entregas (p.ex.Projeto I, II, Defesa)? & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \\ \hline
+        9.Foram identificados custos relativos à execução deste trabalho (se houver)? Haverá financiamento para estes custos? & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \\ \hline
+        10.Foram identificados todos os envolvidos neste trabalho? & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \\ \hline
+        11.As formas de comunicação foram definidas (ex: horários para orientação)? & \cellcolor{shadecolor}  & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \\ \hline
+        12.Riscos potenciais que podem causar desvios do plano foram identificados? & \cellcolor{shadecolor}  & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \\ \hline
+        13.Caso o TCC envolva a produção de um software ou outro tipo de produto e seja desenvolvido também como uma atividade  realizada numa empresa ou laboratório, consta da proposta uma declaração (Anexo 3) de ciência e concordância com a entrega do código fonte e/ou documentação produzidos? & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \\ \hline
+    \end{tabular}
 }
 
 \vspace{12pt}
 
 
 \noindent\resizebox{\textwidth}{!}{
-	\begin{tabular}{|X p{3cm}|X p{2.35cm}|X p{1.6cm}|X p{3.4cm}|}
-			\hline
-   {\footnotesize \textbf{Avaliação}} &  \multicolumn{1}{l}{\textbf{$\Box$ \footnotesize Aprovado}}  & \multicolumn{2}{c|}{\textbf{$\Box$ \footnotesize Não Aprovado}}  \\ \hline \hline
-
-   {\footnotesize \textbf{Professor Responsável}} &  {\footnotesize Prof. Dr. Luiz Claudio Villar dos Santos} &   & \\ \hline
-   {\footnotesize \textbf{Orientador}} &  {\footnotesize Prof. Dr. Luiz Claudio Villar dos Santos} &  & \\ \hline
-	\end{tabular}
+    \scriptsize
+    \begin{tabular}{|X p{3cm}|X p{2.35cm}|X p{1.6cm}|X p{3.4cm}|}
+        \hline
+        \textbf{Avaliação} & \multicolumn{1}{l}{\textbf{$\Box$ \footnotesize Aprovado}} & \multicolumn{2}{c|}{\textbf{$\Box$ \footnotesize Não Aprovado}} \\ \hline \hline
+        \textbf{Professor Responsável} &  {\footnotesize Prof. Dr. Luiz Claudio Villar dos Santos} & & \\ \hline
+        \textbf{Orientador} & {\footnotesize Prof. Dr. Luiz Claudio Villar dos Santos} & & \\ \hline
+    \end{tabular}
 }
 
 \afterpage{\null\newpage}
@@ -203,6 +200,7 @@
 %\paginaagradecimento
 %\paginaepigrafe
 % \imprimirpaginaresumo
+\clearpage
 \par Multiprocessadores em chip demandam o uso de protocolos para assegurar a consistência de
 memória compartilhada e a coerência de cache, os quais são implementados via hardware. A
 crescente complexidade dessas implementações torna o projeto de sistemas de memória suscetível
@@ -294,9 +292,9 @@ objetivo geral é desenvolver uma técnica adaptativa original para geração au
 
 \section{Objetivos Específicos}
 \begin{itemize}
-	\item \textbf{Aumentar a cobertura:} a geração adaptativa dos testes deve dirigir os testes de forma a maximizar a cobertura do sistema.
-	\item \textbf{Manter a reusabilidade:} permitir que a técnica possa ser aplicada em diferentes sistemas de memória.
-	\item \textbf{Comparar com outras técnicas:} a técnica proposta será comparada com outras técnicas já implementadas e que se encontram em domínio público ou na infraestrutura disponibilizada pelo laboratório.
+    \item \textbf{Aumentar a cobertura:} a geração adaptativa dos testes deve dirigir os testes de forma a maximizar a cobertura do sistema.
+    \item \textbf{Manter a reusabilidade:} permitir que a técnica possa ser aplicada em diferentes sistemas de memória.
+    \item \textbf{Comparar com outras técnicas:} a técnica proposta será comparada com outras técnicas já implementadas e que se encontram em domínio público ou na infraestrutura disponibilizada pelo laboratório.
 \end{itemize}
 
 %--------------------------------------------------------------------------
@@ -318,103 +316,103 @@ no acervo do laboratório.
 %--------------------------------------------------------------------------
 \chapter{Cronograma}
 % \noindent{
-% 	\begin{minipage*}{1\textwidth}
-% 	\centering
-\noindent\resizebox{\textwidth}{!}{
+%   \begin{minipage*}{1\textwidth}
+%   \centering
+    \noindent\resizebox{\textwidth}{!}{
 
-	\rowcolors{0}{shadecolor}{shadecolor}
-	\begin{tabular}{|X p{3cm}|c|c|c|c|c|c|c|c|c|c|c|c|}
-		%\begin{small}
-		\hline
-		%{\rowcolor{shadecolor}}
-		%\multirow{2}{*}{\cellcolor{shadecolor}} \\
-		\multirow{-1}{*}{Etapas} &
-		%\cline{2-12}
-		\multicolumn{12}{|c|}{Meses} \\ \hhline{|~|*{12}{-|}}
-		%{\rowcolor{shadecolor}}
-		& jan. & fev. & mar. & abr. & mai. & jun. & jul. & ago. & set. & out. & nov. & dez. \\ \hline
-		\hiderowcolors Revisão do estado da arte 												& x    & x	  &      &      &      &      &      &      &      &      &      &		\\ \hline
-		\hiderowcolors Desenvolvimento do protótipo
-		&      & x    & x    &      &      &      &      &      &      &      &      &      \\
-		\hline
-		\hiderowcolors Testes e comparação preliminares
-		&  	   &      & x    & x    &      &      &      &      &      &      &      &		\\
-		\hline
-		\hiderowcolors Refinamento da técnica
-		&      &      &      & x    & x    &      &      &      &      &      &      &		\\
-		\hline
-		\hiderowcolors Experimentação extensiva com a nova técnica
-		&  	   &  	  &      &      & x    & x    & x    &      &      &      &      &		\\
-		\hline
-		\hiderowcolors Comparação com outras técnicas*
-		&  	   &  	  &      &      &      &      & x    & x    &      &      &      &		\\
-		\hline
-		\hiderowcolors Redação do rascunho da monografia
-		&  	   &  	  &      &      &      &      &      &      & x    & x    &      &		\\
-		\hline
-		\hiderowcolors Preparação da defesa
-		&  	   &   	  &      &      &      &      &      &      &      & x    & x    &		\\
-		\hline
-		\hiderowcolors Revisão final da monografia
-		&  	   &  	  &      &      &      &      &      &      &      &      & x    & x
-		\\ \hline
-		\hiderowcolors Entrega do relatório de TCC 1
-		&  	   &  	  &      &      & o    &      &      &      &      &      &      &		\\
-		\hline
-		\hiderowcolors Entrega do rascunho da monografia
-		&  	   &  	  &      &      &      &      &      &      &      & o    &      &		\\
-		\hline
-		\hiderowcolors Defesa do TCC
-		&  	   &  	  &      &      &      &      &      &      &      &      & o    &		\\
-		\hline
-	\end{tabular}
-	\footnotetext{Por técnicas entende-se aquelas já disponíveis na infraestrutura do laboratório e outras que se apresentem implementação em domínio público}
-}
-\textit{* Por técnicas entende-se aquelas já disponíveis na infraestrutura do laboratório e outras que apresentem implementação em domínio público}
-% \end{minipage*}
-% }\vspace{-.1cm}
+        \rowcolors{0}{shadecolor}{shadecolor}
+    \begin{tabular}{|X p{3cm}|c|c|c|c|c|c|c|c|c|c|c|c|}
+        %\begin{small}
+        \hline
+        %{\rowcolor{shadecolor}}
+        %\multirow{2}{*}{\cellcolor{shadecolor}} \\
+            \multirow{-1}{*}{Etapas} &
+            %\cline{2-12}
+            \multicolumn{12}{|c|}{Meses} \\ \hhline{|~|*{12}{-|}}
+            %{\rowcolor{shadecolor}}
+            & jan. & fev. & mar. & abr. & mai. & jun. & jul. & ago. & set. & out. & nov. & dez. \\ \hline
+            \hiderowcolors Revisão do estado da arte                         & x    & x    &      &      &      &      &      &      &      &      &      &    \\ \hline
+            \hiderowcolors Desenvolvimento do protótipo
+            &      & x    & x    &      &      &      &      &      &      &      &      &      \\
+            \hline
+            \hiderowcolors Testes e comparação preliminares
+            &       &      & x    & x    &      &      &      &      &      &      &      &    \\
+            \hline
+            \hiderowcolors Refinamento da técnica
+            &      &      &      & x    & x    &      &      &      &      &      &      &    \\
+            \hline
+            \hiderowcolors Experimentação extensiva com a nova técnica
+            &       &      &      &      & x    & x    & x    &      &      &      &      &    \\
+            \hline
+            \hiderowcolors Comparação com outras técnicas*
+            &       &      &      &      &      &      & x    & x    &      &      &      &    \\
+            \hline
+            \hiderowcolors Redação do rascunho da monografia
+            &       &      &      &      &      &      &      &      & x    & x    &      &    \\
+            \hline
+            \hiderowcolors Preparação da defesa
+            &       &       &      &      &      &      &      &      &      & x    & x    &    \\
+            \hline
+            \hiderowcolors Revisão final da monografia
+            &       &      &      &      &      &      &      &      &      &      & x    & x
+            \\ \hline
+            \hiderowcolors Entrega do relatório de TCC 1
+            &       &      &      &      & o    &      &      &      &      &      &      &    \\
+            \hline
+            \hiderowcolors Entrega do rascunho da monografia
+            &       &      &      &      &      &      &      &      &      & o    &      &    \\
+            \hline
+            \hiderowcolors Defesa do TCC
+            &       &      &      &      &      &      &      &      &      &      & o    &    \\
+            \hline
+        \end{tabular}
+        \footnotetext{Por técnicas entende-se aquelas já disponíveis na infraestrutura do laboratório e outras que se apresentem implementação em domínio público}
+    }
+        \textit{* Por técnicas entende-se aquelas já disponíveis na infraestrutura do laboratório e outras que apresentem implementação em domínio público}
+        % \end{minipage*}
+        % }\vspace{-.1cm}
 
-\chapter{Custos}
-\vspace{-.1cm}
-% \noindent\resizebox{\textwidth}{!}{
-\begin{tabular}{|X p{3cm}|c|c|c|}
-	%\begin{small}
-	\hline
-	%\rowcolor{shadecolor}
-	{\cellcolor{shadecolor}} Item & {\cellcolor{shadecolor}} Quant. & {\cellcolor{shadecolor}} Valor Un. (R\$) & {\cellcolor{shadecolor}} Total (R\$) \\ \hline
-	\hline
-	\multicolumn{4}{|c|}{Material de Consumo} \\ \hline
-	CD & 6 & $1,50$ & $9,00$ \\ \hline
-	Folhas Impressas & 500 & $0,20$ & $100,00$ \\ \hline
-	%		    \hline
-	%		    \multicolumn{4}{|c|}{Reserva de Contingência} \\ \hline
-	%		     &  &  & $1500,00$ \\ \hline
-	%		    \hline
-	%		    \multicolumn{4}{|c|}{Total} \\ \hline
-	%		     &  &  & $6586,00$ \\ \hline
+    \chapter{Custos}
+    \vspace{-.1cm}
+    % \noindent\resizebox{\textwidth}{!}{
+    \begin{tabular}{|X p{3cm}|c|c|c|}
+        %\begin{small}
+        \hline
+        %\rowcolor{shadecolor}
+            {\cellcolor{shadecolor}} Item & {\cellcolor{shadecolor}} Quant. & {\cellcolor{shadecolor}} Valor Un. (R\$) & {\cellcolor{shadecolor}} Total (R\$) \\ \hline
+            \hline
+            \multicolumn{4}{|c|}{Material de Consumo} \\ \hline
+            CD & 6 & $1,50$ & $9,00$ \\ \hline
+            Folhas Impressas & 500 & $0,20$ & $100,00$ \\ \hline
+            %        \hline
+            %        \multicolumn{4}{|c|}{Reserva de Contingência} \\ \hline
+            %         &  &  & $1500,00$ \\ \hline
+            %        \hline
+            %        \multicolumn{4}{|c|}{Total} \\ \hline
+            %         &  &  & $6586,00$ \\ \hline
 
-	%\end{small}
-\end{tabular}
-% }
+            %\end{small}
+    \end{tabular}
+    % }
 
 \chapter{Recursos Humanos}
 
 % \noindent\resizebox{\textwidth}{!}{
 \begin{tabular}{|c|c|}
-	%\begin{small}
-	\arrayrulecolor{white}
-	\hline
-	\arrayrulecolor{black}
-	\hline
-	\rowcolor{shadecolor}
-	Nome & Função \\ \hline
-	Marleson Graf & Autor \\ \hline
-	Luiz Claudio Villar dos santos & Orientador/Professor Responsável \\ \hline
-	Djones Vinicius Lettnin & Membro da Banca \\ \hline
-	Laércio Lima Pilla & Membro da Banca \\ \hline
-	Renato Cislaghi & Coordenador de Projetos \\ \hline
+    %\begin{small}
+    \arrayrulecolor{white}
+        \hline
+        \arrayrulecolor{black}
+        \hline
+        \rowcolor{shadecolor}
+        Nome & Função \\ \hline
+        Marleson Graf & Autor \\ \hline
+        Luiz Claudio Villar dos santos & Orientador/Professor Responsável \\ \hline
+        Djones Vinicius Lettnin & Membro da Banca \\ \hline
+        Laércio Lima Pilla & Membro da Banca \\ \hline
+        Renato Cislaghi & Coordenador de Projetos \\ \hline
 
-	%\end{small}
+        %\end{small}
 \end{tabular}
 % }
 
@@ -422,44 +420,44 @@ no acervo do laboratório.
 \chapter{Comunicação}
 
 \noindent\resizebox{\textwidth}{!}{
-	\begin{tabular}{|X p{3cm}|X p{3cm}|X p{3cm}|X p{3cm}|X p{3cm}|}
-		%\begin{small}
-		%\arrayrulecolor{white}
-		%\hline
-		%\arrayrulecolor{black}
-		\hhline{|*{5}{-|}}
-		%\rowcolor{shadecolor}
-		%\rowcolor{white}
-		{\cellcolor{shadecolor}} O que precisa ser comunicado & {\cellcolor{shadecolor}} Por quem & {\cellcolor{shadecolor}} Para quem & {\cellcolor{shadecolor}} Melhor forma de Comunicação & {\cellcolor{shadecolor}} Quando e com que frequência \\ \hhline{|*{5}{-|}}
-		%\rowcolor{white}
-		Entregas & Autor & Coordenador de Projetos & site do TCC & Nos dias estipulados pelas disciplinas\\ \hhline{|*{5}{-|}}
-		%\rowcolor{white}
-		Reuniões com o orientador & Autor & Orientador & presencial & Quinzenalmente \\ \hhline{|*{5}{-|}}
-		%\rowcolor{white}
-		Revisões da monografia & Autor & Orientador, membros da banca & papel impresso ou pdf & período de elaboração da monografia\\ \hhline{|*{5}{-|}}
-		%\rowcolor{white}
-		Dúvidas & Autor & Orientador, Membros da Banca ou Coordenador de Projetos & e-mail e/ou presencial & Quando necessário\\ \hhline{|*{5}{-|}}
+    \begin{tabular}{|X p{3cm}|X p{3cm}|X p{3cm}|X p{3cm}|X p{3cm}|}
+        %\begin{small}
+        %\arrayrulecolor{white}
+        %\hline
+        %\arrayrulecolor{black}
+        \hhline{|*{5}{-|}}
+        %\rowcolor{shadecolor}
+        %\rowcolor{white}
+            {\cellcolor{shadecolor}} O que precisa ser comunicado & {\cellcolor{shadecolor}} Por quem & {\cellcolor{shadecolor}} Para quem & {\cellcolor{shadecolor}} Melhor forma de Comunicação & {\cellcolor{shadecolor}} Quando e com que frequência \\ \hhline{|*{5}{-|}}
+            %\rowcolor{white}
+            Entregas & Autor & Coordenador de Projetos & site do TCC & Nos dias estipulados pelas disciplinas\\ \hhline{|*{5}{-|}}
+            %\rowcolor{white}
+            Reuniões com o orientador & Autor & Orientador & presencial & Quinzenalmente \\ \hhline{|*{5}{-|}}
+            %\rowcolor{white}
+            Revisões da monografia & Autor & Orientador, membros da banca & papel impresso ou pdf & período de elaboração da monografia\\ \hhline{|*{5}{-|}}
+            %\rowcolor{white}
+            Dúvidas & Autor & Orientador, Membros da Banca ou Coordenador de Projetos & e-mail e/ou presencial & Quando necessário\\ \hhline{|*{5}{-|}}
 
-		%\end{small}
-	\end{tabular}
+            %\end{small}
+    \end{tabular}
 }
 
 \chapter{Riscos}
 
 \noindent\resizebox{\textwidth}{!}{
-	\begin{tabular}{|X p{2cm}|c|c|c|X p{3cm}|X p{3cm}|}
-		%\begin{small}
-		%\hline
-		\hhline{|*{6}{-|}}
-		%\rowcolor{shadecolor}
-		{\cellcolor{shadecolor}} Risco & {\cellcolor{shadecolor}}Probabilidade & {\cellcolor{shadecolor}}Impacto & {\cellcolor{shadecolor}}Prioridade & {\cellcolor{shadecolor}}Estratégia de Resposta & {\cellcolor{shadecolor}}Ações Preventivas \\ \hhline{|*{6}{-|}}
-		Perda de dados (HD) & média & alto & alta & Recuperação dos dados e aquisição de novo HD & Gerar backups periodicamente\\ \hhline{|*{6}{-|}}
-		Alteração no tema & baixa & alto & alta & Modificar o escopo do tema ou adotar um novo tema & Manter interação constante com orientador\\ \hhline{|*{6}{-|}}
-		Alteração no cronograma & baixa & alto & média & Diminuir o escopo do trabalho & Monitorar continuamente as informações obtidas dos superiores imediatos \\ \hhline{|*{6}{-|}}
-		Problemas de saúde & baixa & média & média & Realizar tratamento e retomar as atividades o quanto antes & Ter hábitos saudáveis e ser precavido\\ \hhline{|*{6}{-|}}
+    \begin{tabular}{|X p{2cm}|c|c|c|X p{3cm}|X p{3cm}|}
+        %\begin{small}
+        %\hline
+        \hhline{|*{6}{-|}}
+        %\rowcolor{shadecolor}
+            {\cellcolor{shadecolor}} Risco & {\cellcolor{shadecolor}}Probabilidade & {\cellcolor{shadecolor}}Impacto & {\cellcolor{shadecolor}}Prioridade & {\cellcolor{shadecolor}}Estratégia de Resposta & {\cellcolor{shadecolor}}Ações Preventivas \\ \hhline{|*{6}{-|}}
+            Perda de dados (HD) & média & alto & alta & Recuperação dos dados e aquisição de novo HD & Gerar backups periodicamente\\ \hhline{|*{6}{-|}}
+            Alteração no tema & baixa & alto & alta & Modificar o escopo do tema ou adotar um novo tema & Manter interação constante com orientador\\ \hhline{|*{6}{-|}}
+            Alteração no cronograma & baixa & alto & média & Diminuir o escopo do trabalho & Monitorar continuamente as informações obtidas dos superiores imediatos \\ \hhline{|*{6}{-|}}
+            Problemas de saúde & baixa & média & média & Realizar tratamento e retomar as atividades o quanto antes & Ter hábitos saudáveis e ser precavido\\ \hhline{|*{6}{-|}}
 
-		%\end{small}
-	\end{tabular}
+            %\end{small}
+    \end{tabular}
 }
 
 \bibliographystyle{ufscThesis/ufsc-alf}
@@ -471,62 +469,62 @@ no acervo do laboratório.
 %\chapter{Exemplificando um Apêndice}
 %Texto do Apêndice aqui.
 \begin{anexosenv}
-\anexos
-\chapter{DECLARAÇÃO PADRÃO PARA EMPRESA OU LABORATÓRIO}
+    \anexos
+    \chapter{DECLARAÇÃO PADRÃO PARA EMPRESA OU LABORATÓRIO}
 
-\begin{snugshade}
+    \begin{snugshade}
 
-\begin{center}
-{\textbf{DECLARAÇÃO DE CONCORDÂNCIA COM AS CONDIÇÕES PARA O DESENVOLVIMENTO DO TCC NA INSTITUIÇÃO}}
-\end{center}
+        \begin{center}
+            {\textbf{DECLARAÇÃO DE CONCORDÂNCIA COM AS CONDIÇÕES PARA O DESENVOLVIMENTO DO TCC NA INSTITUIÇÃO}}
+        \end{center}
 
-\end{snugshade}
+    \end{snugshade}
 
-\vspace{10pt}
+    \vspace{10pt}
 
-Declaro estar ciente das premissas para a realização de Trabalhos de Conclusão de Curso (TCC) de Ciência da Computação e Sistema de In\-for\-ma\-ções da UFSC, particularmente da necessidade de que se o TCC envolver o desenvolvimento de um software ou produto específico (ex: um protocolo, um método computacional, etc.) o código fonte e/ou documentação completa correspondente deverá ser entregue integralmente, como parte integrante do relatório final do TCC.
+    Declaro estar ciente das premissas para a realização de Trabalhos de Conclusão de Curso (TCC) de Ciência da Computação e Sistema de In\-for\-ma\-ções da UFSC, particularmente da necessidade de que se o TCC envolver o desenvolvimento de um software ou produto específico (ex: um protocolo, um método computacional, etc.) o código fonte e/ou documentação completa correspondente deverá ser entregue integralmente, como parte integrante do relatório final do TCC.
 
-Ciente dessa condição básica, declaro estar de acordo com a realização do TCC identificado pelos dados apresentados a seguir.
+    Ciente dessa condição básica, declaro estar de acordo com a realização do TCC identificado pelos dados apresentados a seguir.
 
-\vspace{20pt}
-
-
-\noindent\resizebox{\textwidth}{!}{
-	\begin{tabular}{|l|X p{8cm}|}
-		%\begin{small}
-			\hline
-   \textbf{Instituição} &  ECL/INE/CTC \\ \hline
-   \textbf{Nome do Responsável} &  Luiz Claudio Villar dos Santos \\ \hline
-   \textbf{Cargo/Função} &  Prof. INE/CTC \\ \hline
-   \textbf{Fone de Contato} & (48) 3721 7549\\ \hline
-   \textbf{Acadêmico} & Marleson Graf \\ \hline
-   \textbf{Título do trabalho} & Verificação pré-silício de memória baseada em testes dirigidos adaptativos\\ \hline
-   \textbf{Curso} & Ciências da Computação/INE/UFSC \\ \hline
-
-		%\end{small}
-	\end{tabular}
-}
-
-\vspace{40pt}
-
-\begin{flushright}
-
-	Florianópolis, 14 de Dezembro de 2015.
-
-\end{flushright}
-
-\vspace{20pt}
+    \vspace{20pt}
 
 
-\begin{center}
- \parbox{7cm}{%
- \centering
-   \rule{6cm}{1pt}\\
-    \small \textbf{Professor Responsável}\\
-    Prof. Dr. Luiz Claudio Villar dos Santos
- }
-	\hfill
-\end{center}
+    \noindent\resizebox{\textwidth}{!}{
+        \begin{tabular}{|l|X p{8cm}|}
+            %\begin{small}
+            \hline
+                \textbf{Instituição} &  ECL/INE/CTC \\ \hline
+                \textbf{Nome do Responsável} &  Luiz Claudio Villar dos Santos \\ \hline
+                \textbf{Cargo/Função} &  Prof. INE/CTC \\ \hline
+                \textbf{Fone de Contato} & (48) 3721 7549\\ \hline
+                \textbf{Acadêmico} & Marleson Graf \\ \hline
+                \textbf{Título do trabalho} & Verificação pré-silício de memória baseada em testes dirigidos adaptativos\\ \hline
+                \textbf{Curso} & Ciências da Computação/INE/UFSC \\ \hline
+
+                %\end{small}
+        \end{tabular}
+    }
+
+    \vspace{40pt}
+
+    \begin{flushright}
+
+        Florianópolis, 14 de Dezembro de 2015.
+
+    \end{flushright}
+
+    \vspace{20pt}
+
+
+    \begin{center}
+        \parbox{7cm}{%
+            \centering
+        \rule{6cm}{1pt}\\
+        \small \textbf{Professor Responsável}\\
+        Prof. Dr. Luiz Claudio Villar dos Santos
+        }
+        \hfill
+    \end{center}
 
 \end{anexosenv}
 

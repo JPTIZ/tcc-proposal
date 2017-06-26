@@ -18,10 +18,20 @@
 
 % Carrega como base a classe 'abntex2'
 \LoadClass[%
+  a5paper,
+  10pt,
   twoside, % Impressão nos dois lados da folha
   chapter=TITLE, % Título de capítulos em caixa alta
   section=TITLE  % Título de seções em caixa alta
+  cleardoublepage=plain,
+  capchap,
+  capsec,
+  openright,
+  abntfigtabnum,
+  espacosimples
 ]{abntex2}
+
+\RequirePackage[a5paper,inner=2.5cm,outer=1.5cm,top=2.0cm,bottom=1.5cm,head=0.7cm,foot=0.7cm]{geometry}
 
 % Manipulação de Strings
 \RequirePackage{xstring}
