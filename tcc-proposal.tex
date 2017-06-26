@@ -130,13 +130,9 @@
 \pretextual%
 \imprimircapa
 
-%\folhaderosto[comficha] % Se nao quiser imprimir a ficha, é só não usar o parâmetro
 \imprimirfolhaderosto
 
 \afterpage{\null\newpage}
-
-\clearpage
-\newpage
 
 %--------------------------------------------------------------------------
 % folha de aprovação de proposta de TCC
@@ -208,8 +204,8 @@
     \end{tabular}
 }
 
-\afterpage{\null\newpage}
 \clearpage
+\afterpage{\null\newpage}
 
 %--------------------------------------------------------------------------
 \begin{resumo}
@@ -235,10 +231,7 @@
     \textbf{Palavras-chave}: \listaassuntos
 \end{resumo}
 
-\clearpage
-\newpage
-\clearpage
-\newpage
+\afterpage{\null\newpage}
 
 \tableofcontents
 
