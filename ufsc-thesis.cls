@@ -154,7 +154,7 @@
 
     % Local e data em caixa baixa sem negrito
     {\imprimirlocal}
-    \par{\imprimirdata}
+    \par{\the\year}
     \vspace*{1cm}
   \end{center}
 }

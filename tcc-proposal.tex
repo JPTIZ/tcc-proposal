@@ -53,6 +53,7 @@
 \newcommand\VRule[1][\arrayrulewidth]{\vrule width #1}
 
 \usepackage[a5paper,inner=2.5cm,outer=1.5cm,top=2.0cm,bottom=1.5cm,head=0.7cm,foot=0.7cm]{geometry}
+\renewcommand{\normalsize}{\small}
 
 %----------------------------------------------------------------------
 % Identificadores do trabalho
@@ -65,18 +66,9 @@
 \tipotrabalho{Trabalho de Conclus\~{a}o de Curso}
 \orientador{Prof. Dr. Luiz Claudio Villar dos Santos}
 \programa{Curso de Bacharelado em Ciências da Com\-pu\-ta\-ção}
-
 \centro{Departamento de Informática e Estatística}
-% \grau{Bacharel em Ciências da Computação}
 
 % Preâmbulo
-% \titulo{Exemplo do uso da class \abnTeX}
-% \autor{Mateus {}Dubiela Oliveira}
-% \data{\today}
-% \instituicao{Universidade Federal de Santa Catarina}
-% \local{Florianópolis, SC-Brasil}
-% \tipotrabalho{Exemplo para referência futura}
-% \orientador{Pedro Henrique {}de Souza}
 
 \coorientador{José {}da Silva Sauro}
 % \programa{Programa de Pós-Graduação em Ciências da Computação}
@@ -106,6 +98,28 @@
 
 %\textAbstract {Resumo traduzido para outros idiomas, neste caso, inglês. Segue o formato do resumo feito na língua vernácula. As palavras-chave traduzidas, versão em língua estrangeira, são colocadas abaixo do texto precedidas pela expressão ``Keywords'', separadas por ponto.}
 %\keywords {Keyword 1. Keyword 2. Keyword 3.}
+
+\renewcommand{\imprimircapa}{%
+    \begin{capa}%
+        \center
+        {\ABNTEXchapterfont\large\MakeUppercase{\imprimirinstituicao}\\
+        \ABNTEXchapterfont\large\MakeUppercase{\imprimircentro}}
+
+        \vspace*{1cm}
+
+        {{\normalfont\large\imprimirautor}}
+
+        \vspace*{4cm}
+        \begin{center}
+            \ABNTEXchapterfont\bfseries\large\MakeUppercase{\imprimirtitulo}
+        \end{center}
+        \vfill
+
+        \large\imprimirlocal\\
+        \large\the\year
+        \vspace*{1cm}
+    \end{capa}
+}
 
 %--------------------------------------------------------------------------
 % Início do documento
@@ -151,7 +165,9 @@
     \small
     \noindent\textbf{Instruções para preenchimento pelo \uline{ORIENTADOR DO TRABALHO}:}
     \begin{itemize}[leftmargin=*,noitemsep,topsep=0pt]
-        \item[-] Para cada critério avaliado, assinale um X na coluna SIM apenas se considerado aprovado. Caso contrário, indique as alterações necessárias na coluna Observação.
+        \item[-] Para cada critério avaliado, assinale um X na coluna SIM
+            apenas se considerado aprovado. Caso contrário, indique as
+            alterações necessárias na coluna Observação.
     \end{itemize}
 }
 
@@ -193,143 +209,147 @@
 }
 
 \afterpage{\null\newpage}
+\clearpage
 
 %--------------------------------------------------------------------------
+\begin{resumo}
+    \small
+    Multiprocessadores em chip demandam o uso de protocolos para assegurar a
+    consistência de memória compartilhada e a coerência de cache, os quais são
+    implementados via hardware. A crescente complexidade dessas implementações
+    torna o projeto de sistemas de memória suscetível a erros. Para endereçar
+    esse problema, técnicas de verificação pré-silício têm sido estudadas no
+    meio acadêmico. Por serem executadas em simuladores de uma plataforma real,
+    essas técnicas não viabilizam a execução de testes demasiado extensos.
+    Pensando nisso, algumas abordagens de geração adaptativa foram propostas,
+    procurando maximizar a cobertura funcional dos testes sem aumentar a
+    extensão dos mesmos. Neste trabalho é proposta a elaboração de uma nova
+    técnica de geração automática de testes adaptativos. A técnica será
+    concebida a fim de aumentar a eficácia em se expor erros de projeto no
+    subsistema de memória compartilhada, em especial erros de coerência, e
+    manter-se independente da organização da memória, permitindo o reuso em
+    diversos sistemas.
 
-%\paginadedicatoria
-%\paginaagradecimento
-%\paginaepigrafe
-% \imprimirpaginaresumo
+    \vspace{\onelineskip}
+    \noindent
+    \textbf{Palavras-chave}: \listaassuntos
+\end{resumo}
+
 \clearpage
-\par Multiprocessadores em chip demandam o uso de protocolos para assegurar a consistência de
-memória compartilhada e a coerência de cache, os quais são implementados via hardware. A
-crescente complexidade dessas implementações torna o projeto de sistemas de memória suscetível
-a erros. Para endereçar esse problema, técnicas de verificação pré-silício têm sido estudadas
-no meio acadêmico. Por serem executadas em simuladores de uma plataforma real, essas técnicas
-não viabilizam a execução de testes demasiado extensos. Pensando nisso, algumas abordagens de
-geração adaptativa foram propostas, procurando maximizar a cobertura funcional dos testes sem
-aumentar a extensão dos mesmos. Neste trabalho é proposta a elaboração de uma nova técnica de
-geração automática de testes adaptativos. A técnica será concebida a fim de aumentar a eficácia
-em se expor erros de projeto no subsistema de memória compartilhada, em especial erros de
-coerência, e manter-se independente da organização da memória, permitindo o reuso em diversos
-sistemas.
-%\paginaabstract
-%\pretextuais % Substitui todos os elementos pre-textuais acima
-%\listadefiguras % as listas dependem da necessidade do usuário
-%\listadetabelas
-%\listadeabreviaturas
-
-%\begin{singlespacing}
-%\input{init/acronym}
-%\end{singlespacing}
-
-%\acrodefplural{pmd}[PMDs]{Dispositivos Móveis Portáteis - \textit{Portable Mobile Devices}}%\acp{mv}\acp{pmd}
-
-%\listadesimbolos
-%\critico{mudar a formatação da lista de símbolos}
 \newpage
+\clearpage
+\newpage
+
 \tableofcontents
 
 %--------------------------------------------------------------------------
 \chapter{Introdução}
 
-No contexto de um multiprocessador em chip com memória compartilhada, o uso de caches privadas
-torna necessário implementar um protocolo de coerência para garantir que cópias antigas de
-blocos de cache sejam invalidadas quando um núcleo de processamento atualiza sua própria cópia.
-A programação paralela de propósito geral conta com o gerenciamento implícito da coerência de
-memória (via hardware), justificando a necessidade de uma abstração de memória compartilhada
-coerente para multiprocessadores em chip, mesmo em face a um grande número de núcleos \cite{Devadas:2013}.
+No contexto de um multiprocessador em chip com memória compartilhada, o uso de
+caches privadas torna necessário implementar um protocolo de coerência para
+garantir que cópias antigas de blocos de cache sejam invalidadas quando um
+núcleo de processamento atualiza sua própria cópia.  A programação paralela de
+propósito geral conta com o gerenciamento implícito da coerência de memória
+(via hardware), justificando a necessidade de uma abstração de memória
+compartilhada coerente para multiprocessadores em chip, mesmo em face a um
+grande número de núcleos \cite{Devadas:2013}.
 
-Além disso, operações de memória podem executar fora da ordem de programa. Tal comportamento é
-definido no que se chama \textit{modelo de memória}, o qual especifica regras de consistência
-que definem tanto o grau de relaxação da ordem de programa quanto a extensão da atomicidade de
-escrita \cite{Adve:1996}. Por grande parte dos programas serem sincronizados, um programador
-comum acaba não tomando consciência das regras de consistência \cite{Hennessy:2011}, o que
-permite o uso de modelos de memória mais relaxados, alcançando maior performance sem prejudicar
-o programador.
+Além disso, operações de memória podem executar fora da ordem de programa. Tal
+comportamento é definido no que se chama \textit{modelo de memória}, o qual
+especifica regras de consistência que definem tanto o grau de relaxação da
+ordem de programa quanto a extensão da atomicidade de escrita \cite{Adve:1996}.
+Por grande parte dos programas serem sincronizados, um programador comum acaba
+não tomando consciência das regras de consistência \cite{Hennessy:2011}, o que
+permite o uso de modelos de memória mais relaxados, alcançando maior
+performance sem prejudicar o programador.
 
-Essas características aumentam a complexidade do hardware, demandando a aplicação de técnicas
-de verificação para detectar possíveis erros. A verificação pré-silício se baseia na execução
-de testes sobre uma simulação do sistema de memória com base na representação do
-\textit{design} de sua implementação. Isso permite validar um projeto sem a necessidade de
-sintetizar protótipos para a execução dos testes, como é o caso da verificação pós-silício.
+Essas características aumentam a complexidade do hardware, demandando a
+aplicação de técnicas de verificação para detectar possíveis erros. A
+verificação pré-silício se baseia na execução de testes sobre uma simulação do
+sistema de memória com base na representação do \textit{design} de sua
+implementação. Isso permite validar um projeto sem a necessidade de sintetizar
+protótipos para a execução dos testes, como é o caso da verificação
+pós-silício.
 
-Dentre os verificadores pré-silício, existem dois tipos: os \textit{post-mortem checkers} e os
-\textit{runtime checkers}. O primeiro trata da detecção de erros após o programa de teste
-finalizar sua execução, como é o caso do \textit{checker} relatado em \citeonline{Rambo:2012}).
-O último, por outro lado, realiza a análise do programa durante sua execução, agilizando o
-processo de detecção. Os \textit{checkers} relatados em \citeonline{Shacham:2008} e
-\citeonline{Freitas:2013}) são exemplos de \textit{runtime checkers}, com destaque ao último,
-pois oferece garantias comprovadas, não acusando qualquer falso-positivo ou falso-negativo.
+Dentre os verificadores pré-silício, existem dois tipos: os \textit{post-mortem
+checkers} e os \textit{runtime checkers}. O primeiro trata da detecção de erros
+após o programa de teste finalizar sua execução, como é o caso do
+\textit{checker} relatado em \citeonline{Rambo:2012}).  O último, por outro
+lado, realiza a análise do programa durante sua execução, agilizando o processo
+de detecção. Os \textit{checkers} relatados em \citeonline{Shacham:2008} e
+\citeonline{Freitas:2013}) são exemplos de \textit{runtime checkers}, com
+destaque ao último, pois oferece garantias comprovadas, não acusando qualquer
+falso-positivo ou falso-negativo.
 
-A qualidade do verificador não é o único fator que influencia na verificação. Esses
-verificadores dependem de um mecanismo de geração de programas de teste, os quais devem
-estimular situações de concorrência por meio de operações de leitura e escrita em endereços
-compartilhados por múltiplos núcleos. Nesse sentido, a geração pseudoaleatória de testes para
-verificação de modelos de memória tem sido usada tanto para verificadores pré-silício
-\cite{Shacham:2008, Freitas:2013} quanto pós-silício \cite{Hangal:2004, Manovit:2006:c,
+A qualidade do verificador não é o único fator que influencia na verificação.
+Esses verificadores dependem de um mecanismo de geração de programas de teste,
+os quais devem estimular situações de concorrência por meio de operações de
+leitura e escrita em endereços compartilhados por múltiplos núcleos. Nesse
+sentido, a geração pseudoaleatória de testes para verificação de modelos de
+memória tem sido usada tanto para verificadores pré-silício \cite{Shacham:2008,
+Freitas:2013} quanto pós-silício \cite{Hangal:2004, Manovit:2006:c,
 Roy:2006,Hu:2012}.
 
-Como a verificação pré-silício baseia-se na simulação do projeto real, a taxa de execução de
-operações de memória é ordens de magnitude inferior ao protótipo em hardware, limitando a
-viabilidade da execução de testes muito grandes. Para diminuir o tamanho dos testes sem afetar
-a cobertura dos mesmos, foram propostas técnicas de geração de testes adaptativa
-\cite{Wagner:2008m, Elver:2016}, de forma a guiar a criação de um novo teste com base nas
-informações dos testes anteriores. Neste trabalho, propõe-se a criação de uma nova técnica de
-geração de testes adaptativa.
-
-%a fim de aumentar a eficácia em se expor erros de projeto no
-%subsistema de memória compartilhada distribuída, em especial erros de coerência, mantendo-se
-%independente da organização da memória, para poder ser reusado em diferentes sistemas.
+Como a verificação pré-silício baseia-se na simulação do projeto real, a taxa
+de execução de operações de memória é ordens de magnitude inferior ao protótipo
+em hardware, limitando a viabilidade da execução de testes muito grandes. Para
+diminuir o tamanho dos testes sem afetar a cobertura dos mesmos, foram
+propostas técnicas de geração de testes adaptativa \cite{Wagner:2008m,
+Elver:2016}, de forma a guiar a criação de um novo teste com base nas
+informações dos testes anteriores. Neste trabalho, propõe-se a criação de uma
+nova técnica de geração de testes adaptativa.
 
 %--------------------------------------------------------------------------
 \chapter{Objetivos}
 
 \section{Objetivo Geral}
-O escopo deste trabalho é a verificação pré-silício de consistência de memória compartilhada e
-coerência de cache em subsistemas de memória associados a um multiprocessador em chip. O
-objetivo geral é desenvolver uma técnica adaptativa original para geração automática de testes, os quais serão executados em uma dada representação de multiprocessador.
+O escopo deste trabalho é a verificação pré-silício de consistência de memória
+compartilhada e coerência de cache em subsistemas de memória associados a um
+multiprocessador em chip. O objetivo geral é desenvolver uma técnica adaptativa
+original para geração automática de testes, os quais serão executados em uma
+dada representação de multiprocessador.
 
 \section{Objetivos Específicos}
 \begin{itemize}
-    \item \textbf{Aumentar a cobertura:} a geração adaptativa dos testes deve dirigir os testes de forma a maximizar a cobertura do sistema.
-    \item \textbf{Manter a reusabilidade:} permitir que a técnica possa ser aplicada em diferentes sistemas de memória.
-    \item \textbf{Comparar com outras técnicas:} a técnica proposta será comparada com outras técnicas já implementadas e que se encontram em domínio público ou na infraestrutura disponibilizada pelo laboratório.
+    \item \textbf{Aumentar a cobertura:} a geração adaptativa dos testes deve
+        dirigir os testes de forma a maximizar a cobertura do sistema.
+    \item \textbf{Manter a reusabilidade:} permitir que a técnica possa ser
+        aplicada em diferentes sistemas de memória.
+    \item \textbf{Comparar com outras técnicas:} a técnica proposta será
+        comparada com outras técnicas já implementadas e que se encontram em
+        domínio público ou na infraestrutura disponibilizada pelo laboratório.
 \end{itemize}
 
 %--------------------------------------------------------------------------
 \section{Método de Pesquisa}
 
-A técnica será desenvolvida em uma linguagem de programação de propósito geral, definida
-através de uma meta-heurística com função de custo associada. Inicialmente, será construída uma
-prova de conceito, produzindo um protótipo com função custo e meta-heurística simples (e.g.
-operações conflitantes e melhoria iterativa). Essa técnica terá sua eficácia e cobertura
-comparadas com a técnica de geração pseudoaleatória pura. Com base nesses dados preliminares,
-será realizado um refinamento na técnica, melhorando sua função de custo e meta-heurística.
+A técnica será desenvolvida em uma linguagem de programação de propósito geral,
+definida através de uma meta-heurística com função de custo associada.
+Inicialmente, será construída uma prova de conceito, produzindo um protótipo
+com função custo e meta-heurística simples (e.g.\  operações conflitantes e
+melhoria iterativa). Essa técnica terá sua eficácia e cobertura comparadas com
+a técnica de geração pseudoaleatória pura. Com base nesses dados preliminares,
+será realizado um refinamento na técnica, melhorando sua função de custo e
+meta-heurística.
 
-Sobre a técnica refinada, serão realizados experimentos extensivos, a fim de comparar com
-outras técnicas. Os experimentos serão realizados por meio do simulador \textit{gem5},
-utilizando como modelo de memória o \textit{Alpha}, três níveis de cache e coerência baseada em
-diretório. Os erros de projeto artificiais e \textit{checkers} utilizados serão os disponíveis
-no acervo do laboratório.
+Sobre a técnica refinada, serão realizados experimentos extensivos, a fim de
+comparar com outras técnicas. Os experimentos serão realizados por meio do
+simulador \textit{gem5}, utilizando como modelo de memória o \textit{Alpha},
+três níveis de cache e coerência baseada em diretório. Os erros de projeto
+artificiais e \textit{checkers} utilizados serão os disponíveis no acervo do
+laboratório.
 
 %--------------------------------------------------------------------------
 \chapter{Cronograma}
-% \noindent{
-%   \begin{minipage*}{1\textwidth}
-%   \centering
     \noindent\resizebox{\textwidth}{!}{
 
-        \rowcolors{0}{shadecolor}{shadecolor}
+    \rowcolors{0}{shadecolor}{shadecolor}
     \begin{tabular}{|X p{3cm}|c|c|c|c|c|c|c|c|c|c|c|c|}
-        %\begin{small}
         \hline
-        %{\rowcolor{shadecolor}}
-        %\multirow{2}{*}{\cellcolor{shadecolor}} \\
             \multirow{-1}{*}{Etapas} &
-            %\cline{2-12}
+
             \multicolumn{12}{|c|}{Meses} \\ \hhline{|~|*{12}{-|}}
-            %{\rowcolor{shadecolor}}
+
             & jan. & fev. & mar. & abr. & mai. & jun. & jul. & ago. & set. & out. & nov. & dez. \\ \hline
             \hiderowcolors Revisão do estado da arte                         & x    & x    &      &      &      &      &      &      &      &      &      &    \\ \hline
             \hiderowcolors Desenvolvimento do protótipo
@@ -366,40 +386,28 @@ no acervo do laboratório.
             &       &      &      &      &      &      &      &      &      &      & o    &    \\
             \hline
         \end{tabular}
-        \footnotetext{Por técnicas entende-se aquelas já disponíveis na infraestrutura do laboratório e outras que se apresentem implementação em domínio público}
+        \footnotetext{Por técnicas entende-se aquelas já disponíveis na
+        infraestrutura do laboratório e outras que se apresentem implementação
+        em domínio público}
     }
-        \textit{* Por técnicas entende-se aquelas já disponíveis na infraestrutura do laboratório e outras que apresentem implementação em domínio público}
-        % \end{minipage*}
-        % }\vspace{-.1cm}
+        \textit{* Por técnicas entende-se aquelas já disponíveis na
+        infraestrutura do laboratório e outras que apresentem implementação em
+        domínio público}
 
     \chapter{Custos}
     \vspace{-.1cm}
-    % \noindent\resizebox{\textwidth}{!}{
     \begin{tabular}{|X p{3cm}|c|c|c|}
-        %\begin{small}
         \hline
-        %\rowcolor{shadecolor}
             {\cellcolor{shadecolor}} Item & {\cellcolor{shadecolor}} Quant. & {\cellcolor{shadecolor}} Valor Un. (R\$) & {\cellcolor{shadecolor}} Total (R\$) \\ \hline
             \hline
             \multicolumn{4}{|c|}{Material de Consumo} \\ \hline
             CD & 6 & $1,50$ & $9,00$ \\ \hline
             Folhas Impressas & 500 & $0,20$ & $100,00$ \\ \hline
-            %        \hline
-            %        \multicolumn{4}{|c|}{Reserva de Contingência} \\ \hline
-            %         &  &  & $1500,00$ \\ \hline
-            %        \hline
-            %        \multicolumn{4}{|c|}{Total} \\ \hline
-            %         &  &  & $6586,00$ \\ \hline
-
-            %\end{small}
     \end{tabular}
-    % }
 
 \chapter{Recursos Humanos}
 
-% \noindent\resizebox{\textwidth}{!}{
 \begin{tabular}{|c|c|}
-    %\begin{small}
     \arrayrulecolor{white}
         \hline
         \arrayrulecolor{black}
@@ -411,8 +419,6 @@ no acervo do laboratório.
         Djones Vinicius Lettnin & Membro da Banca \\ \hline
         Laércio Lima Pilla & Membro da Banca \\ \hline
         Renato Cislaghi & Coordenador de Projetos \\ \hline
-
-        %\end{small}
 \end{tabular}
 % }
 
