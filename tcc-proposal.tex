@@ -1,56 +1,17 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Universidade Federal de Santa Catarina
-% Biblioteca Universitária
-%----------------------------------------------------------------------
-% Exemplo de utilização da documentclass ufscThesis
-%----------------------------------------------------------------------
-% (c)2013 Roberto Simoni (roberto.emc@gmail.com)
-%         Carlos R Rocha (cticarlo@gmail.com)
-%         Rafael M Casali (rafaelmcasali@yahoo.com.br)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass{ufsc-thesis} % Definicao do documentclass ufscThesis
-
-\usepackage{abntex2cite}
-
-%----------------------------------------------------------------------
-% Pacotes usados especificamente neste documento
-\usepackage{graphicx}
-\usepackage{color}
-\usepackage{listings}
-\usepackage{multirow}
-\usepackage{tabularx}
-\usepackage[table]{xcolor}
-\usepackage{colortbl}
-\usepackage{framed}
-\usepackage{footnote}
-\makesavenoteenv{tabular}
-\makesavenoteenv{table}
-\usepackage[printonlyused, withpage]{acronym}
-\usepackage{pdfpages}
-\usepackage{afterpage}
-\usepackage{hhline}
-\usepackage{enumitem}
-\usepackage{latexsym}
-\usepackage{bm}
-\usepackage{amssymb}
-\usepackage[normalem]{ulem}
-\usepackage[lined,boxed,ruled,commentsnumbered,portuguese]{algorithm2e}
-
-\usepackage{fontspec}
-\setmainfont{Times New Roman}
-
-\usepackage{tikz}
-\usetikzlibrary{decorations.pathreplacing}
-\usepackage{standalone}
+\documentclass{ufsc-thesis}
+\input{preamble.tex}
 
 %----------------------------------------------------------------------
 % Comandos criados pelo usuário
-\newcommand{\afazer}[1]{{\color{red}{#1}}}
-\newcommand{\critico}[1]{{\color{red}\textbf{{#1}}}}
-\newcommand{\crit}[1]{{\color{red}\textbf{\uppercase{{#1}}}}}
+%----------------------------------------------------------------------
+\newcommand{\todo}[1]{{\color{red}{#1}}}
+\newcommand{\critical}[1]{{\color{red}\textbf{{#1}}}}
+\newcommand{\verycritical}[1]{{\color{red}\textbf{\uppercase{{#1}}}}}
 
 \definecolor{shadecolor}{rgb}{0.8,0.8,0.8}
 \newcommand\VRule[1][\arrayrulewidth]{\vrule width #1}
+
+\newcommand{\shadecell}{{\cellcolor{shadecolor}}}
 
 \usepackage[a5paper,inner=2.5cm,outer=1.5cm,top=2.0cm,bottom=1.5cm,head=0.7cm,foot=0.7cm]{geometry}
 \renewcommand{\normalsize}{\small}
@@ -58,46 +19,30 @@
 %----------------------------------------------------------------------
 % Identificadores do trabalho
 % Usados para preencher os elementos pré-textuais
-\titulo{Verificação presilício de memória baseada em testes dirigidos adaptativos}
-\autor{Marleson Graf}
+%----------------------------------------------------------------------
+\titulo{Limitações das Técnicas de Geração Automática de Programas de Teste para a
+Verificação de Memória Compartilhada em Multi-cores}
+\autor{João Paulo Taylor Ienczak Zanette}
 \data{\today}
 \instituicao{Universidade Federal de Santa Catarina}
-\local{Florianópolis} % Opcional (Florianópolis é o padrão)
+\local{Florianópolis}
 \tipotrabalho{Trabalho de Conclus\~{a}o de Curso}
 \orientador{Prof. Dr. Luiz Claudio Villar dos Santos}
 \programa{Curso de Bacharelado em Ciências da Com\-pu\-ta\-ção}
 \centro{Departamento de Informática e Estatística}
 
-% Preâmbulo
+\def\bancaMembroA{\todo{A definir}}
+\def\bancaMembroB{\todo{A definir}}
 
-\coorientador{José {}da Silva Sauro}
-% \programa{Programa de Pós-Graduação em Ciências da Computação}
-\preambulo{Modelo can\^{o}nico de trabalho de conclusão de curso para acadêmicos da UFSC e usuários da plataforma \abnTeX.}
-% \centro{Centro Tecnológico -- CTC}
+%----------------------------------------------------------------------
+% Preâmbulo
+%----------------------------------------------------------------------
+\preambulo{Trabalho de Conclusão de Curso submetido ao Curso de Bacharelado em
+           Ciências da Computação para a obtenção do Grau de Bacharel
+           em Ciências da Computação.}
 \assuntos{Ciências da Computação,Modelos,Teses,OpenSource,LaTeX}
 
-
-%\numerodemembrosnabanca{3}
-% \orientadornabanca{sim}
-%\coorientadornabanca{sim}
-%\bancaMembroA{Primeiro membro\\Universidade ...}
-% \bancaMembroB{Prof. Dr. Djones Vinicius Lettnin\\Universidade Federal de Santa Catarina}
-% \bancaMembroC{Prof. Dr. Laércio Lima Pilla\\Universidade Federal de Santa Catarina}
-
-%\dedicatoria{Este trabalho é dedicado aos meus colegas de classe e aos meus queridos pais.}
-
-%\agradecimento{Inserir os agradecimentos aos colaboradores à execução do trabalho.}
-
-%\epigrafe{Texto da Epígrafe. Citação relativa ao tema do trabalho. É opcional. A epígrafe pode também aparecer na abertura de cada seção ou capítulo.}
-%{(Autor da epígrafe, ano)}
-
 \assuntos{EDA, verificação, pré-silício, memória compartilhada, multicore, coerência de cache}
-
-%\textoResumo {O presente TCC visa desenvolver o projeto de blocos aceleradores em hardware, de alta eficiência energética, para a etapa de \ac{me} na codificação de vídeo de alta resolução e compatível com o padrão de \ac{hevc}. Serão estudadas soluções que representam o estado da arte para \ac{me} com tamanho de bloco variável, com ênfase na métrica de similaridade conhecida por \ac{satd}, a qual sabe-se resultar em melhor qualidade de codificação. Ainda, serão identificadas oportunidades de otimizações de eficiência energética, devendo estar associadas à solução arquitetural e ao uso de técnicas de \textit{low-power}.}
-%\palavrasChave {Palavra-chave 1. Palavra-chave 2.  Palavra-chave 3. }
-
-%\textAbstract {Resumo traduzido para outros idiomas, neste caso, inglês. Segue o formato do resumo feito na língua vernácula. As palavras-chave traduzidas, versão em língua estrangeira, são colocadas abaixo do texto precedidas pela expressão ``Keywords'', separadas por ponto.}
-%\keywords {Keyword 1. Keyword 2. Keyword 3.}
 
 \renewcommand{\imprimircapa}{%
     \begin{capa}%
@@ -127,7 +72,7 @@
 \begin{document}
 %--------------------------------------------------------------------------
 % Elementos pré-textuais
-\pretextual%
+\pretextual
 \imprimircapa
 
 \imprimirfolhaderosto
@@ -136,7 +81,6 @@
 
 %--------------------------------------------------------------------------
 % folha de aprovação de proposta de TCC
-
 \begin{snugshade}
     \begin{center}
         {\textbf{\small{FOLHA DE APROVAÇÃO DE PROPOSTA DE TCC}}}
@@ -173,21 +117,21 @@
     \footnotesize
     \begin{tabular}{|X p{6cm}|X p{0.5cm}|X p{0.8cm}|X p{0.5cm}|X p{1cm}|X p{3.2cm}|}
         \hline
-        \cellcolor{shadecolor} & \multicolumn{4}{c|}{\cellcolor{shadecolor} \textbf{Aprovado}} & \cellcolor{shadecolor} \\ \hhline{*{1}{>{\arrayrulecolor{shadecolor}}-}*{4}{>{\arrayrulecolor{black}}|-}>{\arrayrulecolor{shadecolor}}|->{\arrayrulecolor{black}}}
-        \multirow{-1}{*}{\cellcolor{shadecolor} \textbf{Critérios}} & \cellcolor{shadecolor}\textbf{Sim} &  \cellcolor{shadecolor}\textbf{Parcial} & \cellcolor{shadecolor}\textbf{Não} & \cellcolor{shadecolor}\textbf{Não se aplica} & \multirow{-1}{*}{\cellcolor{shadecolor} \textbf{Observação}} \\ \hline
-        1.O trabalho é adequado para um TCC no CCO/SIN (relevância/abrangência)? & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \\ \hline
-        2.O título do trabalho é adequado? & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \\ \hline
-        3.O tema de pesquisa está claramente descrito? & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor}  & \cellcolor{shadecolor} & \\ \hline
-        4.O problema/hipóteses de pesquisa do trabalho está claramente identificado? & \cellcolor{shadecolor}  & \cellcolor{shadecolor}  & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \\ \hline
-        5.A relevância da pesquisa é justificada? & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor}  & \cellcolor{shadecolor} & \\ \hline
-        6.Os objetivos descrevem completa e claramente o que se pretende alcançar neste trabalho? & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \\ \hline
-        7.É definido o método a ser adotado no trabalho? O método condiz com os objetivos e é adequado para um TCC? & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \\ \hline
-        8.Foi definido um cronograma coerente com o método definido (indicando todas as atividades) e com as datas das entregas (p.ex.Projeto I, II, Defesa)? & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \\ \hline
-        9.Foram identificados custos relativos à execução deste trabalho (se houver)? Haverá financiamento para estes custos? & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \\ \hline
-        10.Foram identificados todos os envolvidos neste trabalho? & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \\ \hline
-        11.As formas de comunicação foram definidas (ex: horários para orientação)? & \cellcolor{shadecolor}  & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \\ \hline
-        12.Riscos potenciais que podem causar desvios do plano foram identificados? & \cellcolor{shadecolor}  & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \\ \hline
-        13.Caso o TCC envolva a produção de um software ou outro tipo de produto e seja desenvolvido também como uma atividade  realizada numa empresa ou laboratório, consta da proposta uma declaração (Anexo 3) de ciência e concordância com a entrega do código fonte e/ou documentação produzidos? & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \cellcolor{shadecolor} & \\ \hline
+        \shadecell & \multicolumn{4}{c|}{\shadecell \textbf{Aprovado}} & \shadecell \\ \hhline{*{1}{>{\arrayrulecolor{shadecolor}}-}*{4}{>{\arrayrulecolor{black}}|-}>{\arrayrulecolor{shadecolor}}|->{\arrayrulecolor{black}}}
+        \multirow{-1}{*}{\shadecell \textbf{Critérios}} & \shadecell\textbf{Sim} &  \shadecell\textbf{Parcial} & \shadecell\textbf{Não} & \shadecell\textbf{Não se aplica} & \multirow{-1}{*}{\shadecell \textbf{Observação}} \\ \hline
+        1.O trabalho é adequado para um TCC no CCO/SIN (relevância/abrangência)? & \shadecell  & \shadecell & \shadecell  & \shadecell  & \\ \hline
+        2.O título do trabalho é adequado? & \shadecell & \shadecell & \shadecell & \shadecell & \\ \hline
+        3.O tema de pesquisa está claramente descrito? & \shadecell & \shadecell & \shadecell  & \shadecell & \\ \hline
+        4.O problema/hipóteses de pesquisa do trabalho está claramente identificado? & \shadecell  & \shadecell  & \shadecell & \shadecell & \\ \hline
+        5.A relevância da pesquisa é justificada? & \shadecell & \shadecell & \shadecell  & \shadecell & \\ \hline
+        6.Os objetivos descrevem completa e claramente o que se pretende alcançar neste trabalho? & \shadecell & \shadecell & \shadecell & \shadecell & \\ \hline
+        7.É definido o método a ser adotado no trabalho? O método condiz com os objetivos e é adequado para um TCC? & \shadecell & \shadecell & \shadecell & \shadecell & \\ \hline
+        8.Foi definido um cronograma coerente com o método definido (indicando todas as atividades) e com as datas das entregas (p.ex.Projeto I, II, Defesa)? & \shadecell & \shadecell & \shadecell & \shadecell & \\ \hline
+        9.Foram identificados custos relativos à execução deste trabalho (se houver)? Haverá financiamento para estes custos? & \shadecell & \shadecell & \shadecell & \shadecell & \\ \hline
+        10.Foram identificados todos os envolvidos neste trabalho? & \shadecell & \shadecell & \shadecell & \shadecell & \\ \hline
+        11.As formas de comunicação foram definidas (ex: horários para orientação)? & \shadecell  & \shadecell & \shadecell & \shadecell & \\ \hline
+        12.Riscos potenciais que podem causar desvios do plano foram identificados? & \shadecell  & \shadecell & \shadecell & \shadecell & \\ \hline
+        13.Caso o TCC envolva a produção de um software ou outro tipo de produto e seja desenvolvido também como uma atividade  realizada numa empresa ou laboratório, consta da proposta uma declaração (\anexoname\ \ref{decl-concor}) de ciência e concordância com a entrega do código fonte e/ou documentação produzidos? & \shadecell & \shadecell & \shadecell & \shadecell & \\ \hline
     \end{tabular}
 }
 
@@ -199,8 +143,8 @@
     \begin{tabular}{|X p{3cm}|X p{2.35cm}|X p{1.6cm}|X p{3.4cm}|}
         \hline
         \textbf{Avaliação} & \multicolumn{1}{l}{\textbf{$\Box$ \footnotesize Aprovado}} & \multicolumn{2}{c|}{\textbf{$\Box$ \footnotesize Não Aprovado}} \\ \hline \hline
-        \textbf{Professor Responsável} &  {\footnotesize Prof. Dr. Luiz Claudio Villar dos Santos} & & \\ \hline
-        \textbf{Orientador} & {\footnotesize Prof. Dr. Luiz Claudio Villar dos Santos} & & \\ \hline
+        \textbf{Professor Responsável} &  {\footnotesize \imprimirorientador} & & \\ \hline
+        \textbf{Orientador} & {\footnotesize \imprimirorientador} & & \\ \hline
     \end{tabular}
 }
 
@@ -233,211 +177,236 @@
 
 \afterpage{\null\newpage}
 
-\tableofcontents
+\begin{KeepFromToc}
+    \tableofcontents
+\end{KeepFromToc}
 
 %--------------------------------------------------------------------------
 \chapter{Introdução}
 
-No contexto de um multiprocessador em chip com memória compartilhada, o uso de
-caches privadas torna necessário implementar um protocolo de coerência para
-garantir que cópias antigas de blocos de cache sejam invalidadas quando um
-núcleo de processamento atualiza sua própria cópia.  A programação paralela de
-propósito geral conta com o gerenciamento implícito da coerência de memória
-(via hardware), justificando a necessidade de uma abstração de memória
-compartilhada coerente para multiprocessadores em chip, mesmo em face a um
-grande número de núcleos \cite{Devadas:2013}.
+Depois de ter provocado uma mudança radical na forma de se projetar
+microprocessadores para PCs e servidores, o multi-processamento em
+\textit{chip} ou \textit{Chip Multi-Processing (CMP)} levou ao atual quadro
+onde \textit{chips} com 8 ou mais \textit{cores} são bastante comuns. Prevê-se
+o uso de \textit{chips} com dezenas a centenas cores e a sobrevida da abstração
+de memória compartilhada como condição para viabilizar a programação de
+propósitos gerais \cite{Devadas:2013}. Isso resulta no desafio de como manter
+coerência de memória compartilhada \textbf{quando se aumenta a escala do número
+de cores em um único \textit{chip}}. Para suprir a abstração de memória
+compartilhada coerente, o subsistema de memória torna-se mais sofisticado e,
+portanto, mais suscetível a erros de projeto com o aumento massivo do número de
+\textit{cores}. Além disso, como se espera que grande parte dos programas
+paralelos utilize bibliotecas para sincronização, a maioria dos programadores
+não precisa se preocupar com as regras de consistência \cite{Adve:1996} do
+modelo de memória \cite{Hennessy:2011}, o que tende a popularizar o uso de
+\textbf{modelos com máxima relaxação da ordem de programa} para aumentar o
+desempenho sem comprometer a programabilidade.  Isso também contribui para
+aumentar a complexidade do hardware.
 
-Além disso, operações de memória podem executar fora da ordem de programa. Tal
-comportamento é definido no que se chama \textit{modelo de memória}, o qual
-especifica regras de consistência que definem tanto o grau de relaxação da
-ordem de programa quanto a extensão da atomicidade de escrita \cite{Adve:1996}.
-Por grande parte dos programas serem sincronizados, um programador comum acaba
-não tomando consciência das regras de consistência \cite{Hennessy:2011}, o que
-permite o uso de modelos de memória mais relaxados, alcançando maior
-performance sem prejudicar o programador.
+Portanto, a dificuldade de se validar sistemas computacionais baseados em CMP
+tende a aumentar dramaticamente a cada nova geração de produtos a serem
+lançados. Ora, \textbf{a validação da coerência e da consistência do subsistema
+de memória compartilhada}, o qual inclui múltiplos níveis de cache e protocolos
+complexos, constitui grande parte do esforço de se validar um sistema
+computacional baseado em CMP \cite{Wagner:2008}. Como o número de estados
+induzidos por um protocolo de coerência cresce exponencialmente com o aumento
+do número de cores \cite{Shim:2013}, torna-se bastante desafiador o problema de
+verificar se o projeto de um chip baseado em múltiplos \textit{cores} em larga
+escala implementa corretamente o comportamento esperado para o subsistema de
+memória compartilhada.
 
-Essas características aumentam a complexidade do hardware, demandando a
-aplicação de técnicas de verificação para detectar possíveis erros. A
-verificação pré-silício se baseia na execução de testes sobre uma simulação do
-sistema de memória com base na representação do \textit{design} de sua
-implementação. Isso permite validar um projeto sem a necessidade de sintetizar
-protótipos para a execução dos testes, como é o caso da verificação
-pós-silício.
-
-Dentre os verificadores pré-silício, existem dois tipos: os \textit{post-mortem
-checkers} e os \textit{runtime checkers}. O primeiro trata da detecção de erros
-após o programa de teste finalizar sua execução, como é o caso do
-\textit{checker} relatado em \citeonline{Rambo:2012}).  O último, por outro
-lado, realiza a análise do programa durante sua execução, agilizando o processo
-de detecção. Os \textit{checkers} relatados em \citeonline{Shacham:2008} e
-\citeonline{Freitas:2013}) são exemplos de \textit{runtime checkers}, com
-destaque ao último, pois oferece garantias comprovadas, não acusando qualquer
-falso-positivo ou falso-negativo.
-
-A qualidade do verificador não é o único fator que influencia na verificação.
-Esses verificadores dependem de um mecanismo de geração de programas de teste,
-os quais devem estimular situações de concorrência por meio de operações de
-leitura e escrita em endereços compartilhados por múltiplos núcleos. Nesse
-sentido, a geração pseudoaleatória de testes para verificação de modelos de
-memória tem sido usada tanto para verificadores pré-silício \cite{Shacham:2008,
-Freitas:2013} quanto pós-silício \cite{Hangal:2004, Manovit:2006:c,
-Roy:2006,Hu:2012}.
-
-Como a verificação pré-silício baseia-se na simulação do projeto real, a taxa
-de execução de operações de memória é ordens de magnitude inferior ao protótipo
-em hardware, limitando a viabilidade da execução de testes muito grandes. Para
-diminuir o tamanho dos testes sem afetar a cobertura dos mesmos, foram
-propostas técnicas de geração de testes adaptativa \cite{Wagner:2008m,
-Elver:2016}, de forma a guiar a criação de um novo teste com base nas
-informações dos testes anteriores. Neste trabalho, propõe-se a criação de uma
-nova técnica de geração de testes adaptativa.
+As primeiras técnicas de validação do sistema de memória foram propostas para
+serem aplicadas após a fabricação (\textbf{teste} pós-silício), através da
+execução de longos programas de testes aleatórios no próprio hardware do
+protótipo.  Infelizmente, o simples reuso dessas técnicas é inadequado em tempo
+de projeto (para \textbf{verificação} pré-silício), porque seriam
+demasiadamente lentas quando os programas de teste são executados em
+simuladores, o que requer a limitação do tamanho do teste, o que restringe a
+qualidade da verificação. Por isso, as técnicas de verificação tem se mostrado
+frequentemente incapazes de encontrar erros sutis de projeto, que acabam
+passando para o hardware.
 
 %--------------------------------------------------------------------------
 \chapter{Objetivos}
 
 \section{Objetivo Geral}
-O escopo deste trabalho é a verificação pré-silício de consistência de memória
-compartilhada e coerência de cache em subsistemas de memória associados a um
-multiprocessador em chip. O objetivo geral é desenvolver uma técnica adaptativa
-original para geração automática de testes, os quais serão executados em uma
-dada representação de multiprocessador.
+O objetivo geral desta proposta é o estudo de técnicas de geração
+de testes mais eficientes e eficazes, a serem aplicadas em tempo de projeto,
+para solucionar o problema de verificação de consistência e coerência de
+memória compartilhada em sistemas computacionais baseados em CMP.
+
+% O primeiro objetivo específico desta proposta é o de investigar as principais
+% limitações das técnicas reportadas na literatura, a fim de identificar
+% oportunidades de contribuição científica.
+
+% O segundo objetivo específico é a implementação de um protótipo de gerador de
+% testes dirigidos reportado na literatura (e.g. [WAG 08] [ELV 16].) e sua
+% comparação com um gerador convencional de testes aleatórios e com um gerador de
+% testes aleatórios [RAM 11] sob fortes restrições [AND 16a].
 
 \section{Objetivos Específicos}
 \begin{itemize}
-    \item \textbf{Aumentar a cobertura:} a geração adaptativa dos testes deve
-        dirigir os testes de forma a maximizar a cobertura do sistema.
-    \item \textbf{Manter a reusabilidade:} permitir que a técnica possa ser
-        aplicada em diferentes sistemas de memória.
-    \item \textbf{Comparar com outras técnicas:} a técnica proposta será
-        comparada com outras técnicas já implementadas e que se encontram em
-        domínio público ou na infraestrutura disponibilizada pelo laboratório.
+    \item \textbf{Analisar técnicas existentes:} investigar as principais
+        limitações das técnicas reportadas na literatura, a fim de identificar
+        oportunidades de contribuição científica.
+    \item \textbf{Implementar um gerador de testes dirigidos:} tomar como base um
+        gerador reportado na literatura (e.g. \cite{Wagner:2008},
+        \cite{Elver:2016}).
+    \item \textbf{Comparar com outros geradores:} comparar o gerador implementado
+        com um convencional de testes aleatórios \cite{Rambo:2011} e com um de
+        testes aleatórios sob fortes restrições \cite{Andrade:2016a}.
 \end{itemize}
 
 %--------------------------------------------------------------------------
 \section{Método de Pesquisa}
 
-A técnica será desenvolvida em uma linguagem de programação de propósito geral,
-definida através de uma meta-heurística com função de custo associada.
-Inicialmente, será construída uma prova de conceito, produzindo um protótipo
-com função custo e meta-heurística simples (e.g.\  operações conflitantes e
-melhoria iterativa). Essa técnica terá sua eficácia e cobertura comparadas com
-a técnica de geração pseudoaleatória pura. Com base nesses dados preliminares,
-será realizado um refinamento na técnica, melhorando sua função de custo e
-meta-heurística.
+O método a ser adotado consiste na realização de experimentos sobre uma
+\textbf{representação de projeto do sistema sob verificação}, ou seja, na
+execução de testes através da simulação daquela representação, utilizando como
+infraestrutura um \textbf{simulador} de domínio público denominado gem5
+\cite{Gem5:2012}. A representação de projeto utilizada para o subsistema de
+memória corresponde ao módulo \textit{Ruby} daquele simulador, a qual permite a
+descrição das máquinas de estado dos protocolos de coerência.
 
-Sobre a técnica refinada, serão realizados experimentos extensivos, a fim de
-comparar com outras técnicas. Os experimentos serão realizados por meio do
-simulador \textit{gem5}, utilizando como modelo de memória o \textit{Alpha},
-três níveis de cache e coerência baseada em diretório. Os erros de projeto
-artificiais e \textit{checkers} utilizados serão os disponíveis no acervo do
-laboratório.
+Para desempenhar o papel de \textbf{verificador} da correção funcional do
+subsistema de memória representado, será utilizada uma técnica de análise
+automática dos eventos registrados durante a simulação, a qual foi desenvolvida
+localmente \cite{Freitas:2013} e cujo código está portanto disponível para uso
+no laboratório hospedeiro.
+
+O protótipo de gerador de testes dirigidos será implementado com base na
+descrição de seu algoritmo conforme descrito na literatura. Será escolhido o
+gerador cuja descrição for mais completa e leve à melhor reprodutibilidade.
+
+Como representante das técnicas de geração convencional de testes aleatórios
+será utilizado o gerador denominado PLAIN \cite{Rambo:2011}. Como representante
+das técnicas de geração convencional de testes aleatórios sob fortes restrições
+será utilizado o gerador denominado CHAIN \cite{Andrade:2016a}. Os códigos dos
+dois geradores estão disponíveis para uso no laboratório hospedeiro.
+
+Os três geradores serão comparados ao se usar a mesma representação de projeto,
+o mesmo simulador e o mesmo verificador acima mencionados.
+
+Para a simulação de erros de projeto, serão utilizados como base os cinco erros
+artificiais descritos em \cite{Andrade:2016b}, mas novos erros artificiais
+serão desenvolvidos como parte do trabalho proposto para aumentar a abrangência
+da comparação.
+
+Para a comparação serão adotadas as seguintes métricas: cobertura funcional,
+esforço computacional e probabilidade de detecção de erros.
 
 %--------------------------------------------------------------------------
 \chapter{Cronograma}
-    \noindent\resizebox{\textwidth}{!}{
+
+\noindent\resizebox{\textwidth}{!}{
 
     \rowcolors{0}{shadecolor}{shadecolor}
     \begin{tabular}{|X p{3cm}|c|c|c|c|c|c|c|c|c|c|c|c|}
         \hline
             \multirow{-1}{*}{Etapas} &
-
+    
             \multicolumn{12}{|c|}{Meses} \\ \hhline{|~|*{12}{-|}}
-
-            & jan. & fev. & mar. & abr. & mai. & jun. & jul. & ago. & set. & out. & nov. & dez. \\ \hline
-            \hiderowcolors Revisão do estado da arte                         & x    & x    &      &      &      &      &      &      &      &      &      &    \\ \hline
-            \hiderowcolors Desenvolvimento do protótipo
-            &      & x    & x    &      &      &      &      &      &      &      &      &      \\
-            \hline
-            \hiderowcolors Testes e comparação preliminares
-            &       &      & x    & x    &      &      &      &      &      &      &      &    \\
-            \hline
-            \hiderowcolors Refinamento da técnica
-            &      &      &      & x    & x    &      &      &      &      &      &      &    \\
-            \hline
-            \hiderowcolors Experimentação extensiva com a nova técnica
-            &       &      &      &      & x    & x    & x    &      &      &      &      &    \\
-            \hline
-            \hiderowcolors Comparação com outras técnicas*
-            &       &      &      &      &      &      & x    & x    &      &      &      &    \\
-            \hline
-            \hiderowcolors Redação do rascunho da monografia
-            &       &      &      &      &      &      &      &      & x    & x    &      &    \\
-            \hline
-            \hiderowcolors Preparação da defesa
-            &       &       &      &      &      &      &      &      &      & x    & x    &    \\
-            \hline
-            \hiderowcolors Revisão final da monografia
-            &       &      &      &      &      &      &      &      &      &      & x    & x
-            \\ \hline
-            \hiderowcolors Entrega do relatório de TCC 1
-            &       &      &      &      & o    &      &      &      &      &      &      &    \\
-            \hline
+            
+            % [construir um cronograma de dois semestres alocando um total de
+            
+            % - três mêses:
+            %       atividades de 1 a 5 (superpostas);
+            
+            % - um mês:
+            %       atividade 6 (sem sobreposição com nenhuma outra)
+            
+            % - 6 meses:
+            %       atividade 7 (sem sobreposição com nenhuma outra)
+            
+            % - um mês:
+            %       atividades de 8 a 11 (superpostas)]
+    
+            & jul. & ago. & set. & out. & nov. & dez. & jan. & fev. & mar. & abr. & mai. & jun. \\ \hline
+            \hiderowcolors Estudo dos modelos de consistência de memória
+            & x    &      &      &      &      &      &      &      &      &      &      &      \\ \hline
+            \hiderowcolors Estudo de um protocolo de coerência (MESI)
+            & x    & x    &      &      &      &      &      &      &      &      &      &      \\ \hline
+            \hiderowcolors Estudo de geradores de testes aleatórios e testes dirigidos
+            & x    & x    & x    &      &      &      &      &      &      &      &      &      \\ \hline
+            \hiderowcolors Familiarização com o simulador (gem5)
+            &      & x    & x    &      &      &      &      &      &      &      &      &      \\ \hline
+            \hiderowcolors Familiarização com a representação de memória (Ruby)
+            &      &      & x    &      &      &      &      &      &      &      &      &      \\ \hline
+            \hiderowcolors Criação e caracterização de novos erros artificiais de projeto
+            &      &      &      & x    &      &      &      &      &      &      &      &      \\ \hline
+            \hiderowcolors Implementação do protótipo do gerador de testes dirigidos
+            &      &      &      &      & x    & x    & x    & x    & x    & x    &      &      \\ \hline
+            \hiderowcolors Execução de testes produzidos com o gerador implementado
+            &      &      &      &      &      &      &      &      &      &      & x    &      \\ \hline
+            \hiderowcolors Execução de testes produzidos com o gerador PLAIN
+            &      &      &      &      &      &      &      &      &      &      & x    &      \\ \hline
+            \hiderowcolors Execução de testes produzidos com o gerador CHAIN
+            &      &      &      &      &      &      &      &      &      &      & x    &      \\ \hline
+            \hiderowcolors Comparação dos geradores de acordo com as métricas
+            &      &      &      &      &      &      &      &      &      &      & x    &      \\ \hline
+            \hiderowcolors Entrega do relatório de TCC I
+            &      &      &      &      & o    &      &      &      &      &      &      &      \\ \hline
             \hiderowcolors Entrega do rascunho da monografia
-            &       &      &      &      &      &      &      &      &      & o    &      &    \\
-            \hline
+            &      &      &      &      &      &      &      &      &      &      & o    &      \\ \hline
             \hiderowcolors Defesa do TCC
-            &       &      &      &      &      &      &      &      &      &      & o    &    \\
-            \hline
+            &      &      &      &      &      &      &      &      &      &      &      & o    \\ \hline
         \end{tabular}
         \footnotetext{Por técnicas entende-se aquelas já disponíveis na
         infraestrutura do laboratório e outras que se apresentem implementação
         em domínio público}
-    }
-        \textit{* Por técnicas entende-se aquelas já disponíveis na
-        infraestrutura do laboratório e outras que apresentem implementação em
-        domínio público}
+}
 
-    \chapter{Custos}
-    \vspace{-.1cm}
-    \begin{tabular}{|X p{3cm}|c|c|c|}
-        \hline
-            {\cellcolor{shadecolor}} Item & {\cellcolor{shadecolor}} Quant. & {\cellcolor{shadecolor}} Valor Un. (R\$) & {\cellcolor{shadecolor}} Total (R\$) \\ \hline
-            \hline
-            \multicolumn{4}{|c|}{Material de Consumo} \\ \hline
-            CD & 6 & $1,50$ & $9,00$ \\ \hline
-            Folhas Impressas & 500 & $0,20$ & $100,00$ \\ \hline
-    \end{tabular}
+\textit{* Por técnicas entende-se aquelas já disponíveis na
+infraestrutura do laboratório e outras que apresentem implementação em
+domínio público}
+
+
+\chapter{Custos}
+
+\vspace{-.1cm}
+\begin{tabular}{|X p{3cm}|c|c|c|}
+    \hline
+    {\shadecell} Item & {\shadecell} Quant. & {\shadecell} Valor Un. (R\$) & {\shadecell} Total (R\$) \\ \hline
+    \hline
+    \multicolumn{4}{|c|}{Material de Consumo} \\ \hline
+    CD & 6 & $1,50$ & $9,00$ \\ \hline
+    Folhas Impressas & 500 & $0,20$ & $100,00$ \\ \hline
+\end{tabular}
+
 
 \chapter{Recursos Humanos}
 
-\begin{tabular}{|c|c|}
+\begin{tabular}{|l|l|}
     \arrayrulecolor{white}
-        \hline
-        \arrayrulecolor{black}
-        \hline
-        \rowcolor{shadecolor}
-        Nome & Função \\ \hline
-        Marleson Graf & Autor \\ \hline
-        Luiz Claudio Villar dos santos & Orientador/Professor Responsável \\ \hline
-        Djones Vinicius Lettnin & Membro da Banca \\ \hline
-        Laércio Lima Pilla & Membro da Banca \\ \hline
-        Renato Cislaghi & Coordenador de Projetos \\ \hline
+    \hline
+    \arrayrulecolor{black}
+    \hline
+    \rowcolor{shadecolor}
+    Nome & Função \\ \hline
+    \imprimirautor & Autor \\ \hline
+    \imprimirorientador & Orientador/Professor Responsável \\ \hline
+    Gabriel Arthur Gerber Andrade & \todo{Ver função adequada} \\ \hline
+    Marleson Graf & \todo{Ver função adequada} \\ \hline
+    % \bancaMembroA{} & Membro da Banca \\ \hline
+    % \bancaMembroB{} & Membro da Banca \\ \hline
+    Renato Cislaghi & Coordenador de Projetos \\ \hline
 \end{tabular}
-% }
 
 
 \chapter{Comunicação}
 
 \noindent\resizebox{\textwidth}{!}{
     \begin{tabular}{|X p{3cm}|X p{3cm}|X p{3cm}|X p{3cm}|X p{3cm}|}
-        %\begin{small}
-        %\arrayrulecolor{white}
-        %\hline
-        %\arrayrulecolor{black}
         \hhline{|*{5}{-|}}
-        %\rowcolor{shadecolor}
-        %\rowcolor{white}
-            {\cellcolor{shadecolor}} O que precisa ser comunicado & {\cellcolor{shadecolor}} Por quem & {\cellcolor{shadecolor}} Para quem & {\cellcolor{shadecolor}} Melhor forma de Comunicação & {\cellcolor{shadecolor}} Quando e com que frequência \\ \hhline{|*{5}{-|}}
-            %\rowcolor{white}
-            Entregas & Autor & Coordenador de Projetos & site do TCC & Nos dias estipulados pelas disciplinas\\ \hhline{|*{5}{-|}}
-            %\rowcolor{white}
-            Reuniões com o orientador & Autor & Orientador & presencial & Quinzenalmente \\ \hhline{|*{5}{-|}}
-            %\rowcolor{white}
-            Revisões da monografia & Autor & Orientador, membros da banca & papel impresso ou pdf & período de elaboração da monografia\\ \hhline{|*{5}{-|}}
-            %\rowcolor{white}
-            Dúvidas & Autor & Orientador, Membros da Banca ou Coordenador de Projetos & e-mail e/ou presencial & Quando necessário\\ \hhline{|*{5}{-|}}
-
-            %\end{small}
+        {\shadecell} O que precisa ser comunicado & {\shadecell} Por quem & {\shadecell} Para quem & {\shadecell} Melhor forma de Comunicação & {\shadecell} Quando e com que frequência \\ \hhline{|*{5}{-|}}
+        
+        Entregas & Autor & Coordenador de Projetos & Site do TCC & Nos dias estipulados pelas disciplinas\\ \hhline{|*{5}{-|}}
+        
+        Reuniões com o orientador & Autor & Orientador & Presencial & Quinzenalmente \\ \hhline{|*{5}{-|}}
+        
+        Revisões da monografia & Autor & Orientador, membros da banca & Papel impresso ou pdf & Período de elaboração da monografia\\ \hhline{|*{5}{-|}}
+        
+        Dúvidas & Autor & Orientador, Membros da Banca ou Coordenador de Projetos & E-mail e/ou presencial & Quando necessário\\ \hhline{|*{5}{-|}}
     \end{tabular}
 }
 
@@ -445,38 +414,30 @@ laboratório.
 
 \noindent\resizebox{\textwidth}{!}{
     \begin{tabular}{|X p{2cm}|c|c|c|X p{3cm}|X p{3cm}|}
-        %\begin{small}
-        %\hline
         \hhline{|*{6}{-|}}
-        %\rowcolor{shadecolor}
-            {\cellcolor{shadecolor}} Risco & {\cellcolor{shadecolor}}Probabilidade & {\cellcolor{shadecolor}}Impacto & {\cellcolor{shadecolor}}Prioridade & {\cellcolor{shadecolor}}Estratégia de Resposta & {\cellcolor{shadecolor}}Ações Preventivas \\ \hhline{|*{6}{-|}}
-            Perda de dados (HD) & média & alto & alta & Recuperação dos dados e aquisição de novo HD & Gerar backups periodicamente\\ \hhline{|*{6}{-|}}
-            Alteração no tema & baixa & alto & alta & Modificar o escopo do tema ou adotar um novo tema & Manter interação constante com orientador\\ \hhline{|*{6}{-|}}
-            Alteração no cronograma & baixa & alto & média & Diminuir o escopo do trabalho & Monitorar continuamente as informações obtidas dos superiores imediatos \\ \hhline{|*{6}{-|}}
-            Problemas de saúde & baixa & média & média & Realizar tratamento e retomar as atividades o quanto antes & Ter hábitos saudáveis e ser precavido\\ \hhline{|*{6}{-|}}
-
-            %\end{small}
+        {\shadecell} Risco & {\shadecell}Probabilidade & {\shadecell}Impacto & {\shadecell}Prioridade & {\shadecell}Estratégia de Resposta & {\shadecell}Ações Preventivas \\ \hhline{|*{6}{-|}}
+        Perda de dados (HD) & Média & Alto & Alta & Recuperação dos dados e aquisição de novo HD. & Versionar desenvolvimento remotamente. Gerar backups periodicamente. \\ \hhline{|*{6}{-|}}
+        Alteração no tema & Baixa & Alto & Alta & Modificar o escopo do tema ou adotar um novo tema. & Manter interação constante com orientador. \\ \hhline{|*{6}{-|}}
+        Alteração no cronograma & Baixa & Alto & Média & Diminuir o escopo do trabalho. & Monitorar continuamente as informações obtidas dos superiores imediatos. \\ \hhline{|*{6}{-|}}
+        Problemas de saúde & Baixa & Média & Média & Realizar tratamento e retomar as atividades o quanto antes. & Ter hábitos saudáveis e ser precavido. \\ \hhline{|*{6}{-|}}
     \end{tabular}
 }
 
-\bibliographystyle{ufscThesis/ufsc-alf}
-\bibliography{research}
+\bibliography{references}
 
 %--------------------------------------------------------
 % Elementos pós-textuais
-%\apendice
-%\chapter{Exemplificando um Apêndice}
-%Texto do Apêndice aqui.
+
 \begin{anexosenv}
-    \anexos
+    \partanexos
+    
     \chapter{DECLARAÇÃO PADRÃO PARA EMPRESA OU LABORATÓRIO}
+    \label{decl-concor}
 
     \begin{snugshade}
-
         \begin{center}
-            {\textbf{DECLARAÇÃO DE CONCORDÂNCIA COM AS CONDIÇÕES PARA O DESENVOLVIMENTO DO TCC NA INSTITUIÇÃO}}
+            \textbf{DECLARAÇÃO DE CONCORDÂNCIA COM AS CONDIÇÕES PARA O DESENVOLVIMENTO DO TCC NA INSTITUIÇÃO}
         \end{center}
-
     \end{snugshade}
 
     \vspace{10pt}
@@ -490,17 +451,14 @@ laboratório.
 
     \noindent\resizebox{\textwidth}{!}{
         \begin{tabular}{|l|X p{8cm}|}
-            %\begin{small}
             \hline
-                \textbf{Instituição} &  ECL/INE/CTC \\ \hline
-                \textbf{Nome do Responsável} &  Luiz Claudio Villar dos Santos \\ \hline
-                \textbf{Cargo/Função} &  Prof. INE/CTC \\ \hline
-                \textbf{Fone de Contato} & (48) 3721 7549\\ \hline
-                \textbf{Acadêmico} & Marleson Graf \\ \hline
-                \textbf{Título do trabalho} & Verificação pré-silício de memória baseada em testes dirigidos adaptativos\\ \hline
-                \textbf{Curso} & Ciências da Computação/INE/UFSC \\ \hline
-
-                %\end{small}
+            \textbf{Instituição} & ECL/INE/CTC \\ \hline
+            \textbf{Nome do Responsável} & \imprimirorientador \\ \hline
+            \textbf{Cargo/Função} & Prof. INE/CTC \\ \hline
+            \textbf{Fone de Contato} & (48) 3721 7549\\ \hline
+            \textbf{Acadêmico} & \imprimirautor \\ \hline
+            \textbf{Título do trabalho} & Verificação pré-silício de memória baseada em testes dirigidos adaptativos\\ \hline
+            \textbf{Curso} & Ciências da Computação/INE/UFSC \\ \hline
         \end{tabular}
     }
 
@@ -516,11 +474,12 @@ laboratório.
 
 
     \begin{center}
+        \small
         \parbox{7cm}{%
             \centering
-        \rule{6cm}{1pt}\\
-        \small \textbf{Professor Responsável}\\
-        Prof. Dr. Luiz Claudio Villar dos Santos
+            \rule{6cm}{1pt}\\
+            \textbf{Professor Responsável}\\
+            \imprimirorientador
         }
         \hfill
     \end{center}
